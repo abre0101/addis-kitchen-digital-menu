@@ -4,43 +4,42 @@ const VAT_RATE = 0.15
 
 function Cart({ isOpen, onClose, cart, onUpdateQuantity, onRemove, total, onPlaceOrder }) {
   const { t } = useLang()
+  const vat = total * VAT_RATE
+  const grandTotal = total + vat
 
   return (
-    <div className={`cart-panel ${isOpen ? 'open' : ''}`}>
+    <div className={`cart-sidebar ${isOpen ? 'active' : ''}`}>
       <div className="cart-header">
         <h2>{t.yourOrder}</h2>
-        <button className="close-button" onClick={onClose}>×</button>
+        <button className="close-cart" onClick={onClose}>×</button>
       </div>
 
       <div className="cart-items">
         {cart.length === 0 ? (
-          <p className="empty-cart">{t.emptyCart}</p>
+          <p className="cart-empty">{t.emptyCart}</p>
         ) : (
           cart.map(item => {
             const translated = t.items[item.name] || { name: item.name }
+            const opts = [
+              t.sizes[item.selectedSize.name] || item.selectedSize.name,
+              ...item.selectedAddons.map(a => t.addonNames[a.name] || a.name),
+              item.specialInstructions ? `📝 ${item.specialInstructions}` : null
+            ].filter(Boolean).join(' · ')
+
             return (
               <div key={item.cartId} className="cart-item">
-                <img src={item.image} alt={translated.name} />
-                <div className="cart-item-details">
-                  <h4>{translated.name}</h4>
-                  <p className="cart-item-size">{t.sizes[item.selectedSize.name] || item.selectedSize.name}</p>
-                  {item.selectedAddons.length > 0 && (
-                    <p className="cart-item-addons">
-                      + {item.selectedAddons.map(a => t.addonNames[a.name] || a.name).join(', ')}
-                    </p>
-                  )}
-                  {item.specialInstructions && (
-                    <p className="cart-item-instructions">{t.note} {item.specialInstructions}</p>
-                  )}
-                  <p className="cart-item-price">ETB {item.totalPrice.toFixed(0)}</p>
+                <div className="cart-item-header">
+                  <span className="cart-item-name">{translated.name}</span>
+                  <span className="cart-item-price">ETB {item.totalPrice}</span>
                 </div>
+                {opts && <div className="cart-item-options">{opts}</div>}
                 <div className="cart-item-controls">
                   <div className="quantity-controls">
-                    <button onClick={() => onUpdateQuantity(item.cartId, -1)}>−</button>
+                    <button className="qty-btn qty-minus" onClick={() => onUpdateQuantity(item.cartId, -1)}>−</button>
                     <span>{item.quantity}</span>
-                    <button onClick={() => onUpdateQuantity(item.cartId, 1)}>+</button>
+                    <button className="qty-btn qty-plus" onClick={() => onUpdateQuantity(item.cartId, 1)}>+</button>
                   </div>
-                  <button className="remove-button" onClick={() => onRemove(item.cartId)}>{t.remove}</button>
+                  <button className="remove-btn" onClick={() => onRemove(item.cartId)}>{t.remove}</button>
                 </div>
               </div>
             )
@@ -52,17 +51,17 @@ function Cart({ isOpen, onClose, cart, onUpdateQuantity, onRemove, total, onPlac
         <div className="cart-footer">
           <div className="cart-total">
             <span>{t.subtotal}</span>
-            <span>ETB {total.toFixed(0)}</span>
+            <span>ETB {total}</span>
           </div>
           <div className="cart-total">
             <span>{t.vat}</span>
-            <span>ETB {(total * VAT_RATE).toFixed(0)}</span>
+            <span>ETB {vat.toFixed(2)}</span>
           </div>
           <div className="cart-total cart-grand-total">
             <span>{t.total}</span>
-            <span className="total-amount">ETB {(total * (1 + VAT_RATE)).toFixed(0)}</span>
+            <span>ETB {grandTotal.toFixed(2)}</span>
           </div>
-          <button className="place-order-button" onClick={onPlaceOrder}>
+          <button className="btn btn-primary btn-block" onClick={onPlaceOrder}>
             {t.placeOrder}
           </button>
         </div>
