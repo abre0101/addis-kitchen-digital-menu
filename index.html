@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addis Kitchen - Ethiopian Restaurant Menu</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <!-- Slideshow backgrounds -->
+            <div class="hero-slides">
+                <div class="hero-slide active" style="background-image:url('asset/hero.png')"></div>
+                <div class="hero-slide" style="background-image:url('asset/images.jfif')"></div>
+                <div class="hero-slide" style="background-image:url('asset/kitfo.jfif')"></div>
+                <div class="hero-slide" style="background-image:url('asset/tebs.jfif')"></div>
+            </div>
+            <div class="hero-overlay"></div>
+
+            <!-- Slide dots -->
+            <div class="hero-dots" id="heroDots"></div>
+
+            <div class="hero-content">
+                <div class="hero-badge" id="kitchenStatus"></div>
+                <h1 class="hero-title">Addis Kitchen</h1>
+                <p class="hero-tagline" data-en="Authentic Ethiopian Cuisine" data-am="ትክክለኛ የኢትዮጵያ ምግብ">Authentic Ethiopian Cuisine</p>
+                <div class="hero-controls">
+                    <button class="lang-toggle" id="langToggle" title="Switch language">🇪🇹 አማርኛ</button>
+                    <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">🌙</button>
+                </div>
+            </div>
+            <div class="hero-scroll-hint">
+                <span>Scroll to explore</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- Search & Filters -->
+        <div class="search-section">
+            <div class="container">
+
+                <!-- Search bar -->
+                <div class="search-wrap">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input type="text" id="searchInput" class="search-bar"
+                        data-en="Search dishes..." data-am="ምግቦችን ፈልግ..."
+                        placeholder="Search dishes...">
+                </div>
+
+                <!-- Filters + Sort row -->
+                <div class="toolbar-row">
+                    <!-- Dietary filters -->
+                    <div class="filters">
+                        <span class="filter-label">Filter by:</span>
+                        <button class="filter-btn active" data-filter="all" data-en="All" data-am="ሁሉም">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            <span data-en="All" data-am="ሁሉም">All</span>
+                        </button>
+                        <button class="filter-btn" data-filter="vegan" data-en="Fasting" data-am="የጾም">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10"/><path d="M12 8c0 4-4 7-4 7h8s-4-3-4-7z"/></svg>
+                            <span data-en="Fasting" data-am="የጾም">Fasting</span>
+                        </button>
+                        <button class="filter-btn" data-filter="vegetarian" data-en="Vegetarian" data-am="አትክልታዊ">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12C2 6.5 6.5 2 12 2c0 5.5-4.5 10-10 10z"/><path d="M12 2c0 5.5 4.5 10 10 10-5.5 0-10 4.5-10 10"/></svg>
+                            <span data-en="Vegetarian" data-am="አትክልታዊ">Vegetarian</span>
+                        </button>
+                        <button class="filter-btn" data-filter="non-fasting" data-en="Non-fasting" data-am="ስጋ">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10c0 1.5 1 3 3 3s3-1.5 3-3-1-3-3-3c-1.5 0-2.5.8-3 2"/><path d="M17 3l-5 7h7l-4 11"/></svg>
+                            <span data-en="Non-fasting" data-am="ስጋ">Non-fasting</span>
+                        </button>
+                        <button class="filter-btn" data-filter="spicy" data-en="Spicy" data-am="ቅጠር">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 3-1 5-1 8 0 2 1.5 3.5 3 4"/><path d="M8 10c-2 1-4 3-4 6 0 3.3 2.7 6 6 6s6-2.7 6-6c0-2-1-3.5-2-5"/></svg>
+                            <span data-en="Spicy" data-am="ቅጠር">Spicy</span>
+                        </button>
+                    </div>
+
+                    <div class="toolbar-right">
+                        <!-- Sort dropdown -->
+                        <div class="sort-wrap">
+                            <svg class="sort-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="9" y1="18" x2="15" y2="18"/>
+                            </svg>
+                            <select id="sortSelect" class="sort-select">
+                                <option value="featured"   data-en="Featured"          data-am="ተለይቷል">Featured</option>
+                                <option value="popularity" data-en="Popularity"        data-am="ታዋቂነት">Popularity</option>
+                                <option value="price-low"  data-en="Price: Low → High" data-am="ዋጋ: ዝቅ → ከፍ">Price: Low → High</option>
+                                <option value="price-high" data-en="Price: High → Low" data-am="ዋጋ: ከፍ → ዝቅ">Price: High → Low</option>
+                                <option value="name"       data-en="Name A–Z"          data-am="ስም ሀ–ፐ">Name A–Z</option>
+                            </select>
+                            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </div>
+
+                        <!-- History button -->
+                        <button class="history-btn" id="historyToggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            <span data-en="History" data-am="ታሪክ">History</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Category Navigation -->
+        <nav class="category-nav" id="categoryNav">
+            <div class="container">
+                <button class="category-tab active" data-category="featured">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <span data-en="Featured" data-am="ተለይቷል">Featured</span>
+                </button>
+                <button class="category-tab" data-category="appetizers">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10H2A10 10 0 0 1 12 2z"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="12" x2="12" y2="22"/></svg>
+                    <span data-en="Appetizers" data-am="ቅድሚያ ምግብ">Appetizers</span>
+                </button>
+                <button class="category-tab" data-category="mains">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+                    <span data-en="Mains" data-am="ዋና ምግብ">Mains</span>
+                </button>
+                <button class="category-tab" data-category="sides">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                    <span data-en="Sides" data-am="ጎን ምግብ">Sides</span>
+                </button>
+                <button class="category-tab" data-category="drinks">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l1 7H7L8 2z"/><path d="M7 9c0 6 2 10 5 10s5-4 5-10"/></svg>
+                    <span data-en="Drinks" data-am="መጠጦች">Drinks</span>
+                </button>
+                <button class="category-tab" data-category="desserts">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-4 0-7 2.5-7 6 0 2.5 1.5 4.5 4 5.5V20h6v-6.5c2.5-1 4-3 4-5.5 0-3.5-3-6-7-6z"/><line x1="9" y1="20" x2="15" y2="20"/></svg>
+                    <span data-en="Desserts" data-am="ጣፋጭ">Desserts</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <div id="menuContainer" class="menu-container"></div>
+                <div id="emptyState" class="empty-state" style="display:none;">
+                    <div class="empty-icon">🍽️</div>
+                    <p data-en="No dishes match your filter. Try adjusting." data-am="ምንም ምግብ አልተገኘም። ማጣሪያዎን ያስተካክሉ።">No dishes match your filter. Try adjusting.</p>
+                    <button id="clearFilters" class="btn btn-primary" data-en="Clear Filters" data-am="ማጣሪያ አጽዳ">Clear Filters</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Order History Panel -->
+        <div class="history-overlay" id="historyOverlay"></div>
+        <aside class="history-sidebar" id="historySidebar">
+            <div class="cart-header">
+                <h2 data-en="Order History" data-am="የትዕዛዝ ታሪክ">Order History</h2>
+                <button class="close-cart" id="closeHistory">&times;</button>
+            </div>
+            <div id="historyContent" class="cart-items"></div>
+        </aside>
+
+        <!-- Cart FAB -->
+        <button class="cart-fab" id="cartFab" aria-label="Open cart">
+            🛒 <span id="cartCount">0</span>
+        </button>
+
+        <!-- Cart Sidebar -->
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <aside class="cart-sidebar" id="cartSidebar">
+            <div class="cart-header">
+                <h2 data-en="Your Order" data-am="ትዕዛዝዎ">Your Order</h2>
+                <button class="close-cart" id="closeCart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span data-en="Total:" data-am="ጠቅላላ:">Total:</span>
+                    <span id="cartTotal">ETB 0</span>
+                </div>
+                <button class="btn btn-primary btn-block" id="placeOrder"
+                    data-en="Place Order" data-am="ትዕዛዝ ላክ">Place Order</button>
+            </div>
+        </aside>
+
+        <!-- Item Modal -->
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal" id="itemModal">
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose">&times;</button>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div class="success-modal" id="successModal">
+            <div class="success-content">
+                <div class="success-icon">✓</div>
+                <h2 data-en="Order Placed!" data-am="ትዕዛዝ ተልኳል!">Order Placed!</h2>
+                <p id="successMsg">Your order is being prepared. ETA 25 minutes.<br><strong>Ameseginalehu! 🙏 አመሰግናለሁ</strong></p>
+                <button class="btn btn-primary" id="closeSuccess"
+                    data-en="Continue Browsing" data-am="መፈለጉን ቀጥሉ">Continue Browsing</button>
+            </div>
+        </div>
+
+        <!-- Food Video Strip -->
+        <section class="video-strip">
+            <div class="video-strip-overlay">
+                <div class="video-strip-text">
+                    <p class="video-strip-label">Watch us cook</p>
+                    <h2 class="video-strip-title" data-en="From Our Kitchen to Your Table" data-am="ከእኛ ወጥ ቤት ወደ ጠረጴዛዎ">From Our Kitchen to Your Table</h2>
+                </div>
+            </div>
+            <iframe
+                class="video-bg"
+                src="https://www.youtube.com/embed/KmDSCTrH0Hg?autoplay=1&mute=1&loop=1&playlist=KmDSCTrH0Hg&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                title="Ethiopian food video"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                loading="lazy">
+            </iframe>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <!-- Top wave divider -->
+            <div class="footer-wave">
+                <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="currentColor"/>
+                </svg>
+            </div>
+
+            <div class="footer-body">
+                <div class="container">
+                    <div class="footer-grid">
+
+                        <!-- Brand -->
+                        <div class="footer-brand">
+                            <div class="footer-logo">🇪🇹 Addis Kitchen</div>
+                    <p class="footer-tagline" data-en="Bringing the rich flavours of Ethiopia to your table, one bite at a time." data-am="የኢትዮጵያን ልዩ ጣዕሞች ወደ ጠረጴዛዎ እናቀርባለን፣ አንድ ቁርስ በአንድ።">Bringing the rich flavours of Ethiopia to your table, one bite at a time.</p>
+                            <div class="footer-socials">
+                                <a href="#" class="social-link" aria-label="Instagram">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Facebook">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                                </a>
+                                <a href="#" class="social-link" aria-label="TikTok">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Hours -->
+                        <div class="footer-section">
+                            <h4 class="footer-heading">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span data-en="Opening Hours" data-am="የስራ ሰዓት">Opening Hours</span>
+                            </h4>
+                            <ul class="footer-list">
+                                <li>
+                                    <span class="day" data-en="Mon – Fri" data-am="ሰኞ – አርብ">Mon – Fri</span>
+                                    <span class="time">10:00 AM – 10:00 PM</span>
+                                </li>
+                                <li>
+                                    <span class="day" data-en="Sat – Sun" data-am="ቅዳሜ – እሁድ">Sat – Sun</span>
+                                    <span class="time">9:00 AM – 11:00 PM</span>
+                                </li>
+                            </ul>
+                            <div class="footer-status" id="footerStatus"></div>
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="footer-section">
+                            <h4 class="footer-heading">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span data-en="Find Us" data-am="አድራሻ">Find Us</span>
+                            </h4>
+                            <ul class="footer-list">
+                                <li>
+                                    <a href="https://maps.google.com/?q=Bole,Addis+Ababa,Ethiopia" target="_blank" class="footer-link">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                        Kotebe, Addis Ababa
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="tel:+251911234567" class="footer-link">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.76a16 16 0 0 0 6 6l1.27-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        +251 900469816
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:hello@addiskitchen.et" class="footer-link">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                        menu@addiskitchen.et
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- QR -->
+                        <div class="footer-section footer-qr-section">
+                            <h4 class="footer-heading">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/></svg>
+                                <span data-en="Scan to Order" data-am="ለማዘዝ ስካን ያድርጉ">Scan to Order</span>
+                            </h4>
+                            <div class="qr-wrap">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&color=ffffff&bgcolor=1a1a1a&data=http://localhost:5173" alt="QR Code" class="qr-code">
+                                <p class="qr-hint" data-en="Point your camera here" data-am="ካሜራዎን ይጠቁሙ">Point your camera here</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="footer-bottom">
+                <div class="container footer-bottom-inner">
+                    <p>© 2025 Addis Kitchen · Made with ❤️ in Ethiopia</p>
+                    <div class="footer-badges">
+                        <span class="foot-badge">Halal Certified</span>
+                        <span class="foot-badge">100% Authentic</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div><!-- /.app -->
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="src/data.js"></script>
+    <script src="src/app.js"></script>
+    <script src="src/effects.js"></script>
+</body>
+</html>
