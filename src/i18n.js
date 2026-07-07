@@ -29,6 +29,8 @@ export const translations = {
     specialInstructions: "Special Instructions",
     specialInstructionsPlaceholder: "Any special requests?",
     quantity: "Quantity",
+    subtotal: "Subtotal:",
+    vat: "VAT (15%):",
     total: "Total:",
 
     // Cart
@@ -40,6 +42,7 @@ export const translations = {
 
     // Order modal
     orderPlaced: "Order Placed!",
+    orderNumber: "Order #",
     estimatedWait: "Your estimated wait time is 20 minutes.",
     thankYou: "Thank you for your order!",
 
@@ -105,6 +108,8 @@ export const translations = {
     specialInstructions: "ልዩ መመሪያዎች",
     specialInstructionsPlaceholder: "ልዩ ፍላጎቶች አሉ?",
     quantity: "ብዛት",
+    subtotal: "ድምር:",
+    vat: "ታክስ (15%):",
     total: "ጠቅላላ:",
 
     // Cart
@@ -116,6 +121,7 @@ export const translations = {
 
     // Order modal
     orderPlaced: "ትዕዛዝ ተቀብሏል!",
+    orderNumber: "ትዕዛዝ #",
     estimatedWait: "የሚጠበቀው የጊዜ ቆይታ 20 ደቂቃ ነው።",
     thankYou: "ለትዕዛዝዎ እናመሰግናለን!",
 

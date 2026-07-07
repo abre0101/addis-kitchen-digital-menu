@@ -1,6 +1,6 @@
 import { useLang } from '../LanguageContext'
 
-function OrderModal({ isOpen }) {
+function OrderModal({ isOpen, orderNumber }) {
   const { t } = useLang()
   if (!isOpen) return null
 
@@ -9,6 +9,7 @@ function OrderModal({ isOpen }) {
       <div className="order-success-modal">
         <div className="success-icon">✓</div>
         <h2>{t.orderPlaced}</h2>
+        <p className="order-number">{t.orderNumber}{orderNumber}</p>
         <p>{t.estimatedWait}</p>
         <p className="success-message">{t.thankYou}</p>
       </div>

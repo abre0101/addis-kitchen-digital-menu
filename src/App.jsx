@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import { menuData, categories } from './data/menuData'
 import Header from './components/Header'
 import MenuFilters from './components/MenuFilters'
@@ -16,6 +16,8 @@ function App() {
   const [cartOpen, setCartOpen] = useState(false)
   const [cart, setCart] = useState([])
   const [orderModalOpen, setOrderModalOpen] = useState(false)
+  const orderCounterRef = useRef(0)
+  const [currentOrderNumber, setCurrentOrderNumber] = useState(null)
 
   const filteredItems = useMemo(() => {
     let items = [...menuData]
@@ -81,6 +83,8 @@ function App() {
   }
 
   const placeOrder = () => {
+    orderCounterRef.current += 1
+    setCurrentOrderNumber(orderCounterRef.current)
     setOrderModalOpen(true)
     setTimeout(() => {
       setOrderModalOpen(false)
@@ -145,7 +149,7 @@ function App() {
         onPlaceOrder={placeOrder}
       />
 
-      <OrderModal isOpen={orderModalOpen} />
+      <OrderModal isOpen={orderModalOpen} orderNumber={currentOrderNumber} />
     </div>
   )
 }

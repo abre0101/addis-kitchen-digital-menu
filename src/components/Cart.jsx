@@ -1,5 +1,7 @@
 import { useLang } from '../LanguageContext'
 
+const VAT_RATE = 0.15
+
 function Cart({ isOpen, onClose, cart, onUpdateQuantity, onRemove, total, onPlaceOrder }) {
   const { t } = useLang()
 
@@ -49,8 +51,16 @@ function Cart({ isOpen, onClose, cart, onUpdateQuantity, onRemove, total, onPlac
       {cart.length > 0 && (
         <div className="cart-footer">
           <div className="cart-total">
+            <span>{t.subtotal}</span>
+            <span>${total.toFixed(2)}</span>
+          </div>
+          <div className="cart-total">
+            <span>{t.vat}</span>
+            <span>${(total * VAT_RATE).toFixed(2)}</span>
+          </div>
+          <div className="cart-total cart-grand-total">
             <span>{t.total}</span>
-            <span className="total-amount">${total.toFixed(2)}</span>
+            <span className="total-amount">${(total * (1 + VAT_RATE)).toFixed(2)}</span>
           </div>
           <button className="place-order-button" onClick={onPlaceOrder}>
             {t.placeOrder}
