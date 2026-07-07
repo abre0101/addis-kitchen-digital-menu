@@ -49,7 +49,7 @@ function MenuItem({ item, onAddToCart }) {
         </div>
 
         <div className="item-footer">
-          <span className="item-price">${item.price.toFixed(2)}</span>
+          <span className="item-price">ETB {item.price}</span>
           {item.available && (
             <button className="add-button" onClick={() => setShowCustomize(true)}>
               {t.addToCart}
@@ -61,7 +61,7 @@ function MenuItem({ item, onAddToCart }) {
       {showCustomize && (
         <div className="modal-overlay" onClick={() => setShowCustomize(false)}>
           <div className="customize-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="close-button" onClick={() => setShowCustomize(false)}>×</button>
+            <button className="close-button" onClick={() => setShowCustomize(false)}>x</button>
 
             <h2>{translated.name}</h2>
 
@@ -75,7 +75,7 @@ function MenuItem({ item, onAddToCart }) {
                       checked={selectedSize.name === size.name}
                       onChange={() => setSelectedSize(size)}
                     />
-                    <span>{t.sizes[size.name] || size.name} {size.price > 0 && `+$${size.price.toFixed(2)}`}</span>
+                    <span>{t.sizes[size.name] || size.name}{size.price > 0 ? ` +ETB ${size.price}` : ''}</span>
                   </label>
                 ))}
               </div>
@@ -91,7 +91,7 @@ function MenuItem({ item, onAddToCart }) {
                       checked={!!selectedAddons.find(a => a.name === addon.name)}
                       onChange={() => toggleAddon(addon)}
                     />
-                    <span>{t.addonNames[addon.name] || addon.name} +${addon.price.toFixed(2)}</span>
+                    <span>{t.addonNames[addon.name] || addon.name} +ETB {addon.price}</span>
                   </label>
                 ))}
               </div>
@@ -109,14 +109,14 @@ function MenuItem({ item, onAddToCart }) {
             <div className="customize-section">
               <h3>{t.quantity}</h3>
               <div className="quantity-controls">
-                <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button>
+                <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
                 <span>{quantity}</span>
                 <button onClick={() => setQuantity(quantity + 1)}>+</button>
               </div>
             </div>
 
             <div className="modal-footer">
-              <span className="modal-total">{t.total} ${(totalPrice * quantity).toFixed(2)}</span>
+              <span className="modal-total">{t.total} ETB {totalPrice * quantity}</span>
               <button className="add-to-cart-button" onClick={handleAddToCart}>
                 {t.addToCart}
               </button>

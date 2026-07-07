@@ -32,7 +32,7 @@ function Cart({ isOpen, onClose, cart, onUpdateQuantity, onRemove, total, onPlac
                   {item.specialInstructions && (
                     <p className="cart-item-instructions">{t.note} {item.specialInstructions}</p>
                   )}
-                  <p className="cart-item-price">${item.totalPrice.toFixed(2)}</p>
+                  <p className="cart-item-price">ETB {item.totalPrice.toFixed(0)}</p>
                 </div>
                 <div className="cart-item-controls">
                   <div className="quantity-controls">
@@ -52,15 +52,15 @@ function Cart({ isOpen, onClose, cart, onUpdateQuantity, onRemove, total, onPlac
         <div className="cart-footer">
           <div className="cart-total">
             <span>{t.subtotal}</span>
-            <span>${total.toFixed(2)}</span>
+            <span>ETB {total.toFixed(0)}</span>
           </div>
           <div className="cart-total">
             <span>{t.vat}</span>
-            <span>${(total * VAT_RATE).toFixed(2)}</span>
+            <span>ETB {(total * VAT_RATE).toFixed(0)}</span>
           </div>
           <div className="cart-total cart-grand-total">
             <span>{t.total}</span>
-            <span className="total-amount">${(total * (1 + VAT_RATE)).toFixed(2)}</span>
+            <span className="total-amount">ETB {(total * (1 + VAT_RATE)).toFixed(0)}</span>
           </div>
           <button className="place-order-button" onClick={onPlaceOrder}>
             {t.placeOrder}
